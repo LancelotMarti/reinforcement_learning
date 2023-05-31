@@ -155,9 +155,9 @@ class Agent:
         V.append(v)
         while True:
             print("Episode: ", str(episode))
-            self.epsilon = self.epsilon / 2
-            self.solve_maze(eta=eta, gamma=gamma)
-            new_v = np.nanmax(self.Q, axis=1)
+            self.epsilon = self.epsilon / 2 # Each iteration we divide the epsilon by 2 (making the agent less greedy)
+            self.solve_maze(eta=eta, gamma=gamma) # Solve maze (update Q)
+            new_v = np.nanmax(self.Q, axis=1) # new probability vector for each state (updated with last solution)
             print("State value difference: ", np.sum(np.abs(new_v - v)))
             v = new_v
             V.append(v)
@@ -167,7 +167,7 @@ class Agent:
             if episode > tot_episode:
                 print("State value after training: ", V[-1])
                 break
-            self.state = 0
+            self.state = 0 # reset state for next iteration
             self.state_history = [[0, np.nan]]
 
     def __repr__(self):

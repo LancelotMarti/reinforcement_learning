@@ -5,4 +5,4 @@ agent = Agent('q') # q-learning strategy
 agent.train()
 
 maze = Maze()
-maze.save_animation('maze.gif', agent.state_history) # it requires imagemagick
+maze.save_animation('maze.gif', agent.state_history)
